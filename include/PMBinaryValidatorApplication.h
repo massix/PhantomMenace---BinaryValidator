@@ -27,6 +27,7 @@ public:
 	static Application& getInstance();
 	static Application* getInstancePtr();
 	static void deleteInstance();
+	static void printUsage(const std::string& iAppName);
 
 	void setFileName(const std::string& iFileName);
 	void setString(const std::string& iString);

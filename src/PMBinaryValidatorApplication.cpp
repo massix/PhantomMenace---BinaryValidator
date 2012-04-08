@@ -18,7 +18,7 @@ namespace PhantomMenace
 namespace BinaryValidator
 {
 
-Application* _instance = 0;
+Application* Application::_instance = 0;
 
 
 Application::Application()
@@ -59,11 +59,19 @@ Application* Application::getInstancePtr()
 
 void Application::deleteInstance()
 {
-	if (_instance)
-		delete _instance;
 
-	_instance = 0;
 }
+
+void Application::printUsage(const std::string& iAppName)
+{
+	std::cout << "Usage: " << iAppName << " [options]\n"
+			  << "    -f <filename>  -  Parse grammar from <filename>\n"
+			  << "    -s <string>    -  Validate <string>\n"
+			  << "    -d <directory> -  Tries to parse all the grammars in that"
+					  " <directory>\n"
+			  << "    -h             -  Print this page and exits\n";
+}
+
 
 void Application::setFileName(const std::string& iFileName)
 {
@@ -91,6 +99,18 @@ bool Application::validateString() throw (std::runtime_error)
 		PhantomMenace::Validator validator(parsingEnvironment);
 		if (validator.validateString(anInputString))
 		{
+			anOutputString += "Grammar name   : ";
+			anOutputString += parsingEnvironment.getGrammar().getElementName();
+			anOutputString += "\n";
+			anOutputString += "Grammar created: ";
+			anOutputString += parsingEnvironment.getGrammar().getCreationDate();
+			anOutputString += "\n";
+			anOutputString += "Grammar author : ";
+			anOutputString += parsingEnvironment.getGrammar().getAuthor();
+			anOutputString += " <";
+			anOutputString += parsingEnvironment.getGrammar().getAuthorEmail();
+			anOutputString += ">\n\n";
+
 			ElementVector_t::const_iterator ite;
 			for (ite = parsingEnvironment.getElements().begin();
 				 ite != parsingEnvironment.getElements().end();
@@ -104,6 +124,8 @@ bool Application::validateString() throw (std::runtime_error)
 				anOutputString += (*ite).getElementValue();
 				anOutputString += "\n\n";
 			}
+
+			return true;
 		}
 
 		else return false;

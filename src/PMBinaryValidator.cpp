@@ -6,10 +6,14 @@
  */
 
 #include <iostream>
+#include <cstdlib>
+#include <exception>
 
 #include "PMBinaryValidatorApplication.h"
 #include <PM_ParsingEnvironment.h>
 #include <PM_Validator.h>
+
+#define PRINTUSAGE() {app.printUsage(std::string(argv[0])); exit(EXIT_SUCCESS);}
 
 int main(int argc, char *argv[])
 {
@@ -21,21 +25,18 @@ int main(int argc, char *argv[])
 	{
 		std::string arg(argv[i]);
 
-		if (arg == "-f")
+		if (arg == "-f" || arg == "--file")
 		{
 			if (++i == argc)
-				std::cout << "which file?" << std::endl;
+				PRINTUSAGE()
 			else
-			{
-				std::string file(argv[i]);
-				std::cout << "file: " << file << std::endl;
-			}
+				app.setFileName(std::string(argv[i]));
 		}
 
-		else if (arg == "-d")
+		if (arg == "-d" || arg == "--directory")
 		{
 			if (++i == argc)
-				std::cout << "which directory?" << std::endl;
+				PRINTUSAGE()
 			else
 			{
 				std::string directory(argv[i]);
@@ -43,21 +44,30 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		else if (arg == "-s")
+		if (arg == "-s" || arg == "--string")
 		{
 			if (++i == argc)
-				std::cout << "which string?" << std::endl;
+				PRINTUSAGE()
 			else
-			{
-				std::string string(argv[i]);
-				std::cout << "string: " << string << std::endl;
-			}
+				app.setString(std::string(argv[i]));
 		}
 
-		else if (arg == "-h")
+		if (arg == "-h" || arg == "--help")
 		{
-			std::cout << "print usage\n";
+			PRINTUSAGE()
 		}
+	}
+
+	try
+	{
+		if (app.validateString())
+			app.printLog();
+		else
+			std::cout << "String can't be validated against grammar\n";
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 
 	PhantomMenace::BinaryValidator::Application::deleteInstance();

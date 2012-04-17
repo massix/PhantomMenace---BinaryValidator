@@ -11,6 +11,7 @@
 #include <string>
 #include <exception>
 #include <stdexcept>
+#include <vector>
 #include <PM_ParsingEnvironment.h>
 
 namespace PhantomMenace
@@ -31,6 +32,7 @@ public:
 
 	void setFileName(const std::string& iFileName);
 	void setString(const std::string& iString);
+	void setDirectory(const std::string& iDirectory);
 
 	bool validateString() throw (std::runtime_error);
 	void printLog() const;
@@ -40,13 +42,20 @@ private:
 
 	std::string aFileName;
 	std::string anInputString;
-
 	std::string anOutputString;
+	std::string aDirectory;
 
 	bool isFileNameSet;
 	bool isInputStringSet;
+	bool isDirectorySet;
+
+	void generateOutputString(PhantomMenace::ParsingEnvironment iParsingEnv);
 
 	PhantomMenace::ParsingEnvironment parsingEnvironment;
+
+	std::vector<PhantomMenace::ParsingEnvironment*> aParsingEnvironmentVector;
+
+
 
 protected:
 	Application();

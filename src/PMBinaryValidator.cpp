@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 			else
 			{
 				std::string directory(argv[i]);
-				std::cout << "directory: " << directory << std::endl;
+				app.setDirectory(directory);
 			}
 		}
 

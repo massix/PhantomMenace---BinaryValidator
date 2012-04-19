@@ -12,4 +12,6 @@ link_libraries(PhantomMenace)
 
 add_executable(PhantomMenaceValidator ${SOURCES})
 
+set_target_properties(PhantomMenaceValidator PROPERTIES VERSION 1.0.0)
+
 install(TARGETS PhantomMenaceValidator RUNTIME DESTINATION bin)

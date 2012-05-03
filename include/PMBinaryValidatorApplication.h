@@ -43,8 +43,6 @@ public:
 	virtual ~Application();
 
 	static Application& getInstance();
-	static Application* getInstancePtr();
-	static void deleteInstance();
 	static void printUsage(const std::string& iAppName);
 
 	void setFileName(const std::string& iFileName);
@@ -55,8 +53,6 @@ public:
 	void printLog() const;
 
 private:
-	static Application* _instance;
-
 	std::string aFileName;
 	std::string anInputString;
 	std::string anOutputString;

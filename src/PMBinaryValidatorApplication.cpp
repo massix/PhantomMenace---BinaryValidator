@@ -38,9 +38,6 @@ namespace PhantomMenace
 namespace BinaryValidator
 {
 
-Application* Application::_instance = 0;
-
-
 Application::Application()
 	: isFileNameSet(false),
 	  isInputStringSet(false),
@@ -63,23 +60,8 @@ Application::~Application()
 
 Application& Application::getInstance()
 {
-	if (_instance == 0)
-		_instance = new Application();
-
-	return (*_instance);
-}
-
-Application* Application::getInstancePtr()
-{
-	if (_instance == 0)
-		_instance = new Application();
-
+	static Application _instance;
 	return _instance;
-}
-
-void Application::deleteInstance()
-{
-
 }
 
 void Application::printUsage(const std::string& iAppName)

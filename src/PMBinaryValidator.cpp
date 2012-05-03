@@ -87,7 +87,5 @@ int main(int argc, char *argv[])
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	PhantomMenace::BinaryValidator::Application::deleteInstance();
-
 	return 0;
 }

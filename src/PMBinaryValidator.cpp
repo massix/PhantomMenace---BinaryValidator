@@ -72,6 +72,12 @@ int main(int argc, char *argv[])
 		{
 			PRINTUSAGE()
 		}
+
+		if (arg == "-v" || arg == "--version")
+		{
+			PhantomMenace::BinaryValidator::Application::printVersion();
+			exit(EXIT_SUCCESS);
+		}
 	}
 
 	try

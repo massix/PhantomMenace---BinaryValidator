@@ -57,6 +57,8 @@ public:
 	bool validateString() throw (std::runtime_error);
 	void printLog() const;
 
+	static void printVersion();
+
 private:
 	std::string aFileName;
 	std::string anInputString;

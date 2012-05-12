@@ -46,6 +46,7 @@ Application::Application()
 
 Application::Application(const Application& right)
 {
+
 }
 
 Application& Application::operator=(const Application& right)
@@ -70,9 +71,19 @@ void Application::printUsage(const std::string& iAppName)
 			  << "    -s <string>    -  Validate <string>\n"
 			  << "    -d <directory> -  Tries to parse all the grammars in that"
 					  " <directory>\n"
-			  << "    -h             -  Print this page and exits\n";
+			  << "    -h             -  Print this page and exits\n"
+			  << "    -v             -  Print the version and exits\n";
+	std::cout << std::endl;
 }
 
+void Application::printVersion()
+{
+	std::cout
+		<< "PhantomMenace Binary Validator version "
+		<< VALIDATORVERSIONMAJ << "."
+		<< VALIDATORVERSIONBIN << "-"
+		<< VALIDATORVERSIONMIN << std::endl;
+}
 
 void Application::setFileName(const std::string& iFileName)
 {

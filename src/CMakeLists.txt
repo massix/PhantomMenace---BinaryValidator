@@ -7,10 +7,11 @@ file(GLOB HEADERS ../include/*.h)
 
 add_definitions(-Wall)
 
-link_directories(/usr/local/include)
-
+find_package(PhantomMenace REQUIRED)
 add_executable(PhantomMenaceValidator ${SOURCES})
-target_link_libraries(PhantomMenaceValidator PhantomMenace)
+
+include_directories(${PhantomMenace_INCLUDE_DIR})
+target_link_libraries(PhantomMenaceValidator ${PhantomMenace_LIBRARY})
 
 set_target_properties(PhantomMenaceValidator PROPERTIES VERSION 1.0.1)
 

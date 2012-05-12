@@ -61,7 +61,7 @@ public:
 
 private:
 	std::string aFileName;
-	std::string anInputString;
+	std::vector<std::string> aVectorString;
 	std::string anOutputString;
 	std::string aDirectory;
 
@@ -69,12 +69,11 @@ private:
 	bool isInputStringSet;
 	bool isDirectorySet;
 
-	void generateOutputString(PhantomMenace::ParsingEnvironment iParsingEnv);
-
-	PhantomMenace::ParsingEnvironment parsingEnvironment;
+	void generateOutputString(
+			const std::string& iString,
+			const PhantomMenace::ParsingEnvironment& iParsingEnv);
 
 	std::vector<boost::shared_ptr<PhantomMenace::ParsingEnvironment> > aParsingEnvironmentVector;
-//	std::vector<PhantomMenace::ParsingEnvironment*> aParsingEnvironmentVector;
 
 protected:
 	Application();

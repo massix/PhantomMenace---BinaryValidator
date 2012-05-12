@@ -8,11 +8,16 @@ file(GLOB HEADERS ../include/*.h)
 add_definitions(-Wall)
 
 find_package(PhantomMenace REQUIRED)
+find_package(Boost REQUIRED)
+
 add_executable(PhantomMenaceValidator ${SOURCES})
 
-include_directories(${PhantomMenace_INCLUDE_DIR})
-target_link_libraries(PhantomMenaceValidator ${PhantomMenace_LIBRARY})
+include_directories(${PhantomMenace_INCLUDE_DIR} 
+    ${Boost_LIBRARIES})
 
-set_target_properties(PhantomMenaceValidator PROPERTIES VERSION 1.0.1)
+target_link_libraries(PhantomMenaceValidator 
+    ${PhantomMenace_LIBRARY} ${Boost_LIBRARIES})
+
+set_target_properties(PhantomMenaceValidator PROPERTIES VERSION 1.1.0)
 
 install(TARGETS PhantomMenaceValidator RUNTIME DESTINATION bin)

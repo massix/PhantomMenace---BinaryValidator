@@ -40,8 +40,7 @@ namespace BinaryValidator
 
 Application::Application()
 	: isFileNameSet(false),
-	  isInputStringSet(false),
-	  aParsingEnvironmentVector(0)
+	  isInputStringSet(false)
 {
 }
 
@@ -137,8 +136,8 @@ bool Application::validateString() throw (std::runtime_error)
 			std::string aFileName = this->aDirectory + "/" + aDirent->d_name;
 			if (aFileName.find(".ini") != std::string::npos)
 			{
-				PhantomMenace::ParsingEnvironment* aPE =
-						new PhantomMenace::ParsingEnvironment();
+				boost::shared_ptr<PhantomMenace::ParsingEnvironment> aPE(
+						new PhantomMenace::ParsingEnvironment());
 				try
 				{
 					if (aPE->parseFromFile(aFileName))
@@ -147,11 +146,7 @@ bool Application::validateString() throw (std::runtime_error)
 						{
 							aParsingEnvironmentVector.push_back(aPE);
 						}
-
-						else delete aPE;
 					}
-
-					else delete aPE;
 				}
 				catch (...)
 				{
@@ -178,7 +173,7 @@ bool Application::validateString() throw (std::runtime_error)
 		else if (isDirectorySet)
 		{
 			// Try to validate against every grammar in the vector
-			std::vector<PhantomMenace::ParsingEnvironment*>::iterator ite;
+			std::vector<boost::shared_ptr<PhantomMenace::ParsingEnvironment> >::iterator ite;
 			for (ite = aParsingEnvironmentVector.begin();
 					ite != aParsingEnvironmentVector.end();
 					++ite)

@@ -29,7 +29,12 @@
 #include <exception>
 #include <stdexcept>
 #include <vector>
+
+/* PhantomMenace */
 #include <PM_ParsingEnvironment.h>
+
+/* Shared Pointers from boost */
+#include <boost/shared_ptr.hpp>
 
 namespace PhantomMenace
 {
@@ -66,9 +71,8 @@ private:
 
 	PhantomMenace::ParsingEnvironment parsingEnvironment;
 
-	std::vector<PhantomMenace::ParsingEnvironment*> aParsingEnvironmentVector;
-
-
+	std::vector<boost::shared_ptr<PhantomMenace::ParsingEnvironment> > aParsingEnvironmentVector;
+//	std::vector<PhantomMenace::ParsingEnvironment*> aParsingEnvironmentVector;
 
 protected:
 	Application();

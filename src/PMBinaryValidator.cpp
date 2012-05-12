@@ -56,8 +56,7 @@ int main(int argc, char *argv[])
 				PRINTUSAGE()
 			else
 			{
-				std::string directory(argv[i]);
-				app.setDirectory(directory);
+				app.setDirectory(std::string(argv[i]) + "/");
 			}
 		}
 

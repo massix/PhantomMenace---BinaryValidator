@@ -73,7 +73,8 @@ void Application::printUsage(const std::string& iAppName)
 			  << "    -d <directory> -  Tries to parse all the grammars in that"
 					  " <directory>\n"
 			  << "    -h             -  Print this page and exits\n"
-			  << "    -v             -  Print the version and exits\n";
+			  << "    -v             -  Print the version and exits\n"
+			  << "    -l <filename>  -  Print log to <filename>\n";
 	std::cout << std::endl;
 }
 
@@ -202,6 +203,24 @@ bool Application::validateString() throw (std::runtime_error)
 void Application::printLog() const
 {
 	std::cout << anOutputString << std::endl;
+}
+
+void Application::setParserLogFile(const std::string& logfile)
+{
+	std::vector<boost::shared_ptr<PhantomMenace::ParsingEnvironment> >::iterator parsing_iterator;
+	for (parsing_iterator = aParsingEnvironmentVector.begin(); parsing_iterator != aParsingEnvironmentVector.end(); ++parsing_iterator)
+	{
+		(*parsing_iterator)->setLogFile(logfile);
+	}
+}
+
+void Application::printParserLog() const
+{
+	std::vector<boost::shared_ptr<PhantomMenace::ParsingEnvironment> >::const_iterator parsing_iterator;
+	for (parsing_iterator = aParsingEnvironmentVector.begin(); parsing_iterator != aParsingEnvironmentVector.end(); ++parsing_iterator)
+	{
+		(*parsing_iterator)->logElements();
+	}
 }
 
 void Application::generateOutputString(

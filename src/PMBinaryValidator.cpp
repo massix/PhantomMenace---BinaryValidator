@@ -38,6 +38,9 @@ int main(int argc, char *argv[])
 	PhantomMenace::BinaryValidator::Application& app =
 			PhantomMenace::BinaryValidator::Application::getInstance();
 
+	bool log = false;
+	std::string logfile;
+
 	for (int i = 0; i < argc; i++)
 	{
 		std::string arg(argv[i]);
@@ -78,6 +81,17 @@ int main(int argc, char *argv[])
 			PhantomMenace::BinaryValidator::Application::printVersion();
 			exit(EXIT_SUCCESS);
 		}
+
+		if (arg == "-l" || arg == "--logfile")
+		{
+			if (++i == argc)
+				PRINTUSAGE()
+			else
+			{
+				logfile = argv[i];
+				log = true;
+			}
+		}
 	}
 
 	try
@@ -86,6 +100,12 @@ int main(int argc, char *argv[])
 			app.printLog();
 		else
 			std::cout << "String can't be validated against grammar\n";
+
+		if (log)
+		{
+			app.setParserLogFile(logfile);
+			app.printParserLog();
+		}
 	}
 	catch (std::exception& e)
 	{

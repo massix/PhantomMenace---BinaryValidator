@@ -56,6 +56,8 @@ public:
 
 	bool validateString() throw (std::runtime_error);
 	void printLog() const;
+	void setParserLogFile(const std::string& logfile);
+	void printParserLog() const;
 
 	static void printVersion();
 

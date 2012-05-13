@@ -6,7 +6,7 @@ file(GLOB SOURCES *.cpp)
 file(GLOB HEADERS ../include/*.h)
 
 set(PhantomMenaceVersionMajor 1)
-set(PhantomMenaceVersionBinComp 2)
+set(PhantomMenaceVersionBinComp 3)
 set(PhantomMenaceVersionMinor 0)
 set(PhantomMenaceVersion 
     ${PhantomMenaceVersionMajor}.${PhantomMenaceVersionBinComp}.${PhantomMenaceVersionMinor})

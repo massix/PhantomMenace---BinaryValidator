@@ -32,6 +32,7 @@
 
 #include <PM_Validator.h>
 #include <PM_TokenElement.h>
+#include <PM_StaticFunctions.h>
 
 namespace PhantomMenace
 {
@@ -79,10 +80,11 @@ void Application::printUsage(const std::string& iAppName)
 void Application::printVersion()
 {
 	std::cout
-		<< "PhantomMenace Binary Validator version "
+		<< "PhantomMenace Binary Validator version: "
 		<< VALIDATORVERSIONMAJ << "."
-		<< VALIDATORVERSIONBIN << "-"
+		<< VALIDATORVERSIONBIN << "."
 		<< VALIDATORVERSIONMIN << std::endl;
+	std::cout << PhantomMenace::Util::getFullVersion() << std::endl;
 }
 
 void Application::setFileName(const std::string& iFileName)

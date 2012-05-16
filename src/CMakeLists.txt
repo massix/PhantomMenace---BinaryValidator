@@ -1,13 +1,10 @@
 # src folder
 
-include_directories(../include /usr/local/include)
-
 file(GLOB SOURCES *.cpp)
-file(GLOB HEADERS ../include/*.h)
 
 set(PhantomMenaceVersionMajor 1)
 set(PhantomMenaceVersionBinComp 3)
-set(PhantomMenaceVersionMinor 0)
+set(PhantomMenaceVersionMinor 1)
 set(PhantomMenaceVersion 
     ${PhantomMenaceVersionMajor}.${PhantomMenaceVersionBinComp}.${PhantomMenaceVersionMinor})
 

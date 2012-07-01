@@ -14,7 +14,7 @@ add_definitions(-Wall
     -DVALIDATORVERSIONMIN=${PhantomMenaceVersionMinor})
 
 find_package(PhantomMenace REQUIRED)
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
 add_executable(PhantomMenaceValidator ${SOURCES})
 
